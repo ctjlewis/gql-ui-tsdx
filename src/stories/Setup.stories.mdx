@@ -1,0 +1,61 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Setup/Initial Configuration" />
+
+# Initial Configuration
+
+## Environment variables
+You'll most likely want to store your Auth0 and Dgraph data as environment
+variables, i.e. in a `.env` file:
+
+```shell
+# Auth0
+AUTH0_DOMAIN="---"
+AUTH0_CLIENT="---"
+
+# Dgraph Cloud
+DGRAPH_DOMAIN="---"
+DGRAPH_CLIENT="---"
+```
+
+## Add to `src/App`
+
+Now, wrap your app with a `GqlUiProvider`:
+
+```tsx
+/**
+ * Load from process.env. These variable names may vary depending on your setup
+ * (i.e., you may need to use NEXT_PUBLIC_ prefixes for domains on NextJS).
+ */
+const {
+  AUTH0_DOMAIN,
+  AUTH0_CLIENT,
+  DGRAPH_DOMAIN,
+  DGRAPH_CLIENT
+} = process.env;
+
+const config = {
+  auth0: {
+    domain: AUTH0_DOMAIN ?? '',
+    clientKey: AUTH0_CLIENT ?? ''
+  },
+  dgraph: {
+    domain: DGRAPH_DOMAIN ?? '',
+    clientKey: DGRAPH_CLIENT ?? ''
+  }
+}
+
+const App = () => {
+  return (
+    <GqlUiProvider {...config}>
+      {/* App contents */}
+    </GqlUiProvider>
+  );
+}
+
+export default App;
+```
+
+This library's components will now be able to authenticate its requests to the
+backend. This will also provide a configured Apollo Client to all children,
+which can be accessed with `useApolloClient()`.
