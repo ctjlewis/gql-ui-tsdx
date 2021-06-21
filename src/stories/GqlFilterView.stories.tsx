@@ -1,32 +1,31 @@
-import { useAuth0 } from '@auth0/auth0-react';
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { GqlFilterView } from '..';
 import { GqlProvider } from '../components/GqlProvider';
 import { GQL_CONFIG } from './utils/config';
 import { generateTemplates } from './utils/templates';
 
-const LoginRedirecter = () => {
-  const { loginWithRedirect } = useAuth0();
+// const LoginRedirecter = () => {
+//   const { loginWithRedirect } = useAuth0();
 
-  useEffect(
-    () => (loginWithRedirect({
-      screen_hint: 'signup'
-    }), void 0),
-    []
-  );
-  return (
-    <div></div>
-  );
-}
+//   useEffect(
+//     () => (loginWithRedirect({
+//       screen_hint: 'signup'
+//     }), void 0),
+//     []
+//   );
+//   return (
+//     <div></div>
+//   );
+// }
 
-const SignInButton = () => {
-  const { loginWithRedirect } = useAuth0();
-  return (
-    <button onClick={() => loginWithRedirect({
-      screen_hint: 'signup'
-    })}>Sign in</button>
-  );
-}
+// const SignInButton = () => {
+//   const { loginWithRedirect } = useAuth0();
+//   return (
+//     <button onClick={() => loginWithRedirect({
+//       screen_hint: 'signup'
+//     })}>Sign in</button>
+//   );
+// }
 
 const FilterViewExample: FC = ({ children, ...props }) => {
   return (
@@ -34,7 +33,7 @@ const FilterViewExample: FC = ({ children, ...props }) => {
       {/* <SignInButton /> */}
       <GqlFilterView>
         <h2>Example goes here</h2>
-        {/* {JSON.stringify({ children, props }, null, 2)} */}
+        {JSON.stringify({ children, props }, null, 2)}
       </GqlFilterView>
     </GqlProvider>
   );

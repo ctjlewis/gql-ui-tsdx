@@ -6,7 +6,7 @@ const FormExample: FC = ({ children, ...props }) => {
   return (
     <GqlForm>
       <h2>Example goes here</h2>
-      {/* {JSON.stringify({ children, props }, null, 2)} */}
+      {JSON.stringify({ children, props }, null, 2)}
     </GqlForm>
   );
 }

@@ -6,7 +6,7 @@ const IdViewExample: FC = ({ children, ...props }) => {
   return (
     <GqlIdView>
       <h2>Example goes here</h2>
-      {/* {JSON.stringify({ children, props }, null, 2)} */}
+      {JSON.stringify({ children, props }, null, 2)}
     </GqlIdView>
   );
 }
