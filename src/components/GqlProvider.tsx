@@ -3,17 +3,17 @@
  * This file exports a pre-configured ApolloProvider.
  */
 
-import React, { Component, FC, ReactNode, useEffect } from "react";
-import { ApolloClient, ApolloProvider, NormalizedCacheObject } from "@apollo/client";
-import { initializeGqlClient, useGqlClient } from "../lib/client";
+import React, { FC } from "react";
+import { ApolloProvider } from "@apollo/client";
+import { initializeGqlClient } from "../lib/client";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
-import { AUTH0_CLIENT_ID, AUTH0_DOMAIN, HOMEPAGE } from "../lib/globals";
+import { HOMEPAGE } from "../lib/globals";
 
-let token: string = '';
+// let token: string = '';
 
 const AuthenticatedApolloProvider: FC = ({ children }) => {
   const client = initializeGqlClient();
-  const { isLoading, isAuthenticated, getIdTokenClaims } = useAuth0();
+  const { isLoading, isAuthenticated } = useAuth0();
   console.log('AuthenticatedApolloProvider', { isLoading, isAuthenticated })
 
   /**
@@ -53,14 +53,14 @@ const AuthenticatedApolloProvider: FC = ({ children }) => {
 //   }
 // }
 
-const Test: FC = ({ children }) => {
-  const client = useGqlClient();
-  return (
-    <ApolloProvider client={client}>
-      {children}
-    </ApolloProvider>
-  );
-}
+// const Test: FC = ({ children }) => {
+//   const client = useGqlClient();
+//   return (
+//     <ApolloProvider client={client}>
+//       {children}
+//     </ApolloProvider>
+//   );
+// }
 
 interface ClientConfiguration {
   domain: string;
@@ -75,7 +75,7 @@ interface GqlConfiguration {
 export const GqlProvider: FC<GqlConfiguration> = ({
   children,
   auth0,
-  dgraph,
+  // dgraph,
 }) => {
   console.log('render gqlProvider')
   return (
